@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Word Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            text-align: center;
+            width: 90%;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 20px 0;
+        }
+        .word {
+            font-size: 70px;
+            font-weight: bolder;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="grid" class="grid"></div>
+        <button onclick="generateGrid()">다시 시작</button>
+    </div>
+
+    <script>
+        const colors = ["red", "blue", "#FFBF00", "green", "black"];
+        const words = ["노랑", "파랑", "빨강", "검정", "초록"];
+
+        function getRandomElement(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        function generateGrid() {
+            const grid = document.getElementById("grid");
+            grid.innerHTML = ""; // Clear previous grid
+
+            for (let i = 0; i < 20; i++) {
+                const word = getRandomElement(words);
+                const color = getRandomElement(colors);
+
+                const wordElement = document.createElement("div");
+                wordElement.className = "word";
+                wordElement.textContent = word;
+                wordElement.style.color = color;
+
+                grid.appendChild(wordElement);
+            }
+        }
+        generateGrid();
+    </script>
+</body>
+</html>
